@@ -1,3 +1,4 @@
+import Customer from '../entity/customer';
 import Order from '../entity/order';
 import OrderItem from '../entity/orderItem';
 import OrderService from './order.service';
@@ -10,5 +11,13 @@ describe("Order service unit tests", () => {
        const order2 = new Order("o1", "c1", [item2]);
        const total = OrderService.total([order, order2]);
        expect(total).toEqual(500);
+    });
+
+    it("should place an order", () => {
+        const customer = new Customer("c1", "Paul");
+        const item1 = new OrderItem("i1", "Item 1", 100, "p1", 1);
+        const order = OrderService.placeOrder(customer, [item1]);
+        expect(customer.rewardPoints).toBe(50);
+        expect(order.total()).toBe(100);
     });
 });
