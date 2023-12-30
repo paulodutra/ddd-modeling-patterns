@@ -1,8 +1,8 @@
 //@ts-ignore
-import Address from "./entity/Address";
-import Customer from "./entity/customer";
-import Order from "./entity/order";
-import OrderItem from "./entity/orderItem";
+import Address from "./domain/entity/Address";
+import Customer from "./domain/entity/customer";
+import Order from "./domain/entity/order";
+import OrderItem from "./domain/entity/orderItem";
 
 //aggregate 1, relation with object
 const customer = new Customer('123', 'Paulo');
