@@ -74,26 +74,40 @@ export default class OrderRepository implements OrderRepositoryInterface {
   }
 
   async update(entity: Order): Promise<void> {
-    await OrderModel.update({
-      id: entity.id,
-      customer_id: entity.customerId,
-      total: entity.total(),
-      items: entity.items.map((item) => ({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        product_id: item.productId,
-        quantity: item.quantity,
-      })),
-    },
-      {
-        where: {
-          id: entity.id,
-        },
-      }
-    ).then(async(result) => {
-      console.log(result);
-    });
+    try {
+      await OrderModel.update({
+        customer_id: entity.customerId,
+        total: entity.total(),
+      },
+        {
+          where: {
+            id: entity.id,
+          },
+        }
+      );
+      await Promise.all(
+        entity.items.map(async (item) => {
+          await OrderItemModel.update(
+            {
+              name: item.name,
+              price: item.price,
+              product_id: item.productId,
+              quantity: item.quantity,
+            },
+            {
+              where: {
+                id: item.id,
+              },
+             
+            }
+          );
+        })
+      );
+     
+    } catch(error) {
+  
+      console.log(error);
+    }
 
   }
 }
