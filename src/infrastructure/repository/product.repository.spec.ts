@@ -15,7 +15,6 @@ describe('Product repository test',() => {
     
         await sequelize.addModels([ProductModel]);
         await sequelize.sync();
-        //await sequelize.dropAllSchemas({logging: true});
     });
 
     afterEach(async () => {
@@ -26,7 +25,6 @@ describe('Product repository test',() => {
         const product = new Product("1", "Product 1", 100);
         await productRepository.create(product);
         const productModel = await ProductModel.findOne({ where: { id: "1" }});
-        console.log(productModel);
         expect(productModel.toJSON()).toStrictEqual({
             id: "1",
             name: "Product 1",
