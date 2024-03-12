@@ -17,12 +17,12 @@ describe('Order repository test',() => {
     beforeEach(async () => {
         sequelize = new Sequelize({
             dialect: 'sqlite',
-            storage: ':memory',
+            storage: ':memory:',
             logging: false,
             sync: { force: true },
         });
     
-        sequelize.addModels([
+        await sequelize.addModels([
             CustomerModel, 
             OrderModel, 
             OrderItemModel, 
