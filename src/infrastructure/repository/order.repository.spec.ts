@@ -173,7 +173,6 @@ describe('Order repository test',() => {
         const orderId = "122";
         const orderEntity = new Order(orderId, customerId, [orderItem]);
         await orderRepository.create(orderEntity);
-        console.log('before update', await orderRepository.find(orderId));
 
         const newOrderItem = new OrderItem(
             "1",
