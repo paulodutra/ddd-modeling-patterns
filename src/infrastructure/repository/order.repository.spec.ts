@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import CustomerModel from '../db/sequelize/model/customer.model';
 import Customer from '../../domain/entity/customer';
 import CustomerRepository from './customer.repository';
-import Address from '../../domain/entity/Address';
+import Address from '../../domain/entity/address';
 import OrderModel from '../db/sequelize/model/order.model';
 import OrderItemModel from '../db/sequelize/model/order-item.model';
 import ProductModel from '../db/sequelize/model/product.model';

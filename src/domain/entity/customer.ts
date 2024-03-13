@@ -1,4 +1,4 @@
-import Address from './Address';
+import Address from './address';
 
 const EMPTY = 0;
 export default class Customer {
